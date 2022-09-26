@@ -13,8 +13,8 @@ terraform {
 
 provider "aws"{
 	region = "ap-south-1"
-	access_key = "AKIASYDD5CFZ3WU6VOHR"
-	secret_key = "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"
+	access_key = "AKIASYDD5CFZ3WU6dhdsy6R"
+	secret_key = "tVsYV3+piuUqpnCqmS7izWbQ8F70JMT/Xk/lhySJhs6HG"
 }
 
 
@@ -39,13 +39,14 @@ resource "aws_instance" "os1"{
 		Name ="var.osName"
 	}
 
+#This block  use to localsystem connect to ec2 instance though ssh protocal 
  connection{
 	type = "ssh"
 	user = "ec2-user"
 	private_key = file( "C:/Users/Ratan/Downloads/mykey_dontdelete_key.pem" )
 	host = "3.110.160.191"
 }
-
+#Confinguer ec2 instances 
 provisioner "remote-exec"{
 	inline = ["sudo yum install httpd -y",
 		   "sudo touch /var/www/html/index.html",
